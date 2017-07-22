@@ -1,0 +1,39 @@
+const express = require("express");
+const port = process.env.PORT || 3000;
+
+const currencyRatesApp = express();
+var Helpers = require("./helpers");
+
+currencyRatesApp.use("/styles", express.static(__dirname + "/resources/styles/"));
+currencyRatesApp.use("/public", express.static(__dirname));
+// currencyRatesApp.use("/utils", express.static(__dirname + "/utils/"));
+
+var projectHelpers = new Helpers();
+var pagesFolderPath = __dirname + "/pages/"
+
+currencyRatesApp.get("/", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+currencyRatesApp.get("/hotels", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+currencyRatesApp.get("/hotel/:id", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+
+currencyRatesApp.get("/test", function(request, response) {
+
+	var options = {
+		root: pagesFolderPath,
+		headers: {
+			"x-timestamp": Date.now(),
+			"x-sent": true
+		}
+	}
+
+	var filename = "test.html";
+	response.sendFile(filename, options, function(err) {
+		if(err)
+			console.log(err);
+		else
+			console.log("Sent File: " + filename);
+	});
+});
+
+currencyRatesApp.listen(port);
+console.log("Server listening on port " + port);
+
