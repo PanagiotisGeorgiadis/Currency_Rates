@@ -2,12 +2,16 @@
 
 	height: calc(100vh - 5em);
 
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	/*justify-content: center;*/
 	align-items: center;
 	flex-wrap: wrap;
 }
+
+/***********************************************/
+/********* Currency Inputs Section *************/
+/***********************************************/
 
 .currency_input_container {
 
@@ -15,6 +19,8 @@
 
 	display: flex;
 	justify-content: space-around;
+
+	margin-bottom: 5em;
 }
 
 .currency_date_input,
@@ -63,3 +69,40 @@
 	background-color: #23a5f6;
 }
 
+
+/***********************************************/
+/********* Currency Table Section **************/
+/***********************************************/
+.currency_table_container {
+
+	position: absolute;
+	top: 35%;
+}
+
+.currency_table {
+	border-collapse: collapse;
+}
+
+.currency_names_row {
+	border-bottom: 5px solid white;
+}
+
+.currency_table tr td {
+	padding: 5px 15px;
+	cursor: pointer;
+}
+
+.currency_table tr td:nth-child(odd) {
+	background-color: #d3d3d3;
+}
+
+.currency_table tr td:nth-child(even) {
+
+	background-color: #a6a6a6;
+}
+
+td {
+
+	text-align: center;
+	border-right: 5px solid white;
+}

@@ -10,7 +10,8 @@ const defaultCurrencyRatesAppState = {
 	currencyRates: {},
 	currencyNames: [],
 	selectedDate: year + "-" + month + "-" + date,
-	selectedCurrency: ""
+	selectedCurrency: "",
+	drawCurrencyTable: false,
 }
 
 const initialState = {

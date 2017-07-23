@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getCurrencyRates } from "../actions/CurrencyRatesActions";
+import { getCurrencyNames, getCurrencyRates } from "../actions/CurrencyRatesActions";
 
 import Header from "../components/Generic/Header";
 import LoadingImage from "../components/Generic/LoadingImage";
 import ErrorMessage from "../components/Generic/ErrorMessage";
 
+import CurrencyTable from "../components/CurrencyRates/CurrencyTable";
 import CurrencyInputContainer from "../components/CurrencyRates/CurrencyInputContainer";
 
 class PlainCurrencyRatesPage extends Component {
@@ -30,7 +31,7 @@ class PlainCurrencyRatesPage extends Component {
 
 	componentWillMount() {
 
-		this.props.getCurrencyRates();
+		this.props.getCurrencyNames();
 		this.setState({
 			...this.props,
 		});
@@ -52,29 +53,35 @@ class PlainCurrencyRatesPage extends Component {
 
 	handleSubmit(event) {
 
-		// console.log(event.target.value);
-		console.log(this.state.selectedCurrency);
-		console.log(this.state.selectedDate);
+		if(this.state.selectedDate && this.state.selectedCurrency) {
+			var url = "http://api.fixer.io/" + this.state.selectedDate + "?base=" + this.state.selectedCurrency;
+			this.state.getCurrencyRates(url);
+		}
 	}
 
 	render() {
 
+		let pageContents = [];
 		if(this.state.showErrorMessage) {
-			return (
-				<ErrorMessage errorMessageText = { this.state.errorMessage } />
-			);
+
+			pageContents.push(<ErrorMessage key = { 0 } errorMessageText = { this.state.errorMessage } />);
 		} else if(this.state.showLoadingImage) {
-			return (
-				<LoadingImage />
-			);
+
+			pageContents.push(<LoadingImage key = { 0 } />);
 		} else {
-			return (
-				<div className = "currency_content_container">
-					<Header headerClassName = { "page_header" } headerText = { "Welcome to the plain currency rates page!" } />
-					<CurrencyInputContainer onCurrencyChangeHandler = { this.handleCurrencyChange.bind(this) } currencyNames = { this.state.currencyNames } onDateChangeHandler = { this.handleDateChange.bind(this) } onSubmitHandler = { this.handleSubmit.bind(this) } />
-				</div>
-			);
+
+			pageContents.push(<CurrencyInputContainer key = { 0 } onCurrencyChangeHandler = { this.handleCurrencyChange.bind(this) } currencyNames = { this.state.currencyNames } onDateChangeHandler = { this.handleDateChange.bind(this) } onSubmitHandler = { this.handleSubmit.bind(this) } />);
+
+			if(this.state.drawCurrencyTable)
+				pageContents.push(<CurrencyTable key = { 1 } currencyRates = { this.state.currencyRates.rates } />);
 		}
+
+		return (
+			<div className = "currency_content_container">
+				<Header headerClassName = { "page_header" } headerText = { "Welcome to the plain currency rates page!" } />
+				{ pageContents }
+			</div>
+		);
 	}
 }
 
@@ -87,6 +94,7 @@ const mapStateToProps = ({CurrencyRatesReducer}) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
+		getCurrencyNames,
 		getCurrencyRates
 	}, dispatch);
 }

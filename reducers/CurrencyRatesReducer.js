@@ -8,8 +8,6 @@ export default (state = null, action) => {
 
 	var updatedState = Object.assign({}, state);
 
-	updatedState.drawCurrencyTable = false;
-
 	switch(action.type) {
 
 		case DRAW_LOADING_IMAGE:
@@ -74,9 +72,6 @@ export default (state = null, action) => {
 			updatedState.showLoadingImage = false;
 			break;
 
-		case DRAW_INITIAL_CURRENCY_RATES:
-
-			break;
 	}
 
 	return updatedState;
