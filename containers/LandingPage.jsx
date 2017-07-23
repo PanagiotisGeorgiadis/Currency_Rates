@@ -30,7 +30,7 @@ class LandingPage extends Component {
 
 		return (
 			<div className = "landing_page_container">
-				<Header headerClassName = { "landing_page_header" } headerText = { "Welcome to Currency Rates App!" } />
+				<Header headerClassName = { "page_header" } headerText = { "Welcome to Currency Rates App!" } />
 				<LandingPageContentContainer />
 			</div>
 		);

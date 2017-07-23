@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getCurrencyRates } from "../actions/LandingPageActions";
+import { getCurrencyRates } from "../actions/CurrencyRatesActions";
 
 import Header from "../components/Generic/Header";
 
@@ -32,7 +32,7 @@ class EnhancedCurrencyRatesPage extends Component {
 
 		return (
 			<div className = "about_page_container">
-				<Header headerStyle = {{ textAlign: "center" }} headerText = { "Welcome to the enhanced currency rates page!" } />
+				<Header headerClassName = { "page_header" } headerText = { "Welcome to the enhanced currency rates page!" } />
 			</div>
 		);
 	}
