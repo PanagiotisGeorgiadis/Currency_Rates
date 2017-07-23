@@ -31,7 +31,7 @@ class NavigationMenu extends Component {
 		return (
 			<div className = "navigation_container">
 				<NavigationOption navigationLink = "/" navigationText = "Home" />
-				<NavigationOption navigationLink = "/rates" navigationText = "Currency Rates" />
+				<NavigationOption navigationLink = "/plain_rates" navigationText = "Currency Rates" />
 				<NavigationOption navigationLink = "/about" navigationText = "About" />
 			</div>
 		);

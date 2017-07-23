@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -11,8 +11,11 @@ import rootReducer from "./reducers/";
 import initialState from "./CurrencyRatesState";
 
 import NavigationMenu from "./containers/NavigationMenu.jsx";
+
 import LandingPage from "./containers/LandingPage.jsx";
 import AboutPage from "./containers/AboutPage.jsx";
+import PlainCurrencyRatesPage from "./containers/PlainCurrencyRatesPage.jsx";
+import EnhancedCurrencyRatesPage from "./containers/EnhancedCurrencyRatesPage.jsx";
 
 export default class CurrencyRatesApp extends Component {
 
@@ -28,7 +31,8 @@ export default class CurrencyRatesApp extends Component {
 				<div>
 					<NavigationMenu />
 					<Route exact path = "/" component = { LandingPage } />
-					<Route exact path = "/results" component = { LandingPage } />
+					<Route exact path = "/plain_rates" component = { PlainCurrencyRatesPage } />
+					<Route exact path = "/enhanced_rates" component = { LandingPage } />
 					<Route exact path = "/about" component = { AboutPage } />
 				</div>
 			</Router>

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 
 import Header from "../components/Generic/Header";
 
-class AboutPage extends Component {
+class EnhancedCurrencyRatesPage extends Component {
 
 	constructor(props) {
 		super(props);
@@ -29,7 +29,7 @@ class AboutPage extends Component {
 
 		return (
 			<div className = "about_page_container">
-				<Header headerStyle = {{ textAlign: "center" }} headerText = { "Welcome to the About Page!" } />
+				<Header headerStyle = {{ textAlign: "center" }} headerText = { "Welcome to the enhanced currency rates page!" } />
 			</div>
 		);
 	}
@@ -47,4 +47,4 @@ const mapDispatchToProps = (dispatch) => {
 	}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AboutPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedCurrencyRatesPage);

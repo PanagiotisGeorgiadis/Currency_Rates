@@ -12,8 +12,9 @@ var projectHelpers = new Helpers();
 var pagesFolderPath = __dirname + "/pages/"
 
 currencyRatesApp.get("/", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
-currencyRatesApp.get("/hotels", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
-currencyRatesApp.get("/hotel/:id", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+currencyRatesApp.get("/plain_rates", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+currencyRatesApp.get("/enhanced_rates", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+currencyRatesApp.get("/about", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
 
 currencyRatesApp.get("/test", function(request, response) {
 

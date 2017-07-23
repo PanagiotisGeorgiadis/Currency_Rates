@@ -5,14 +5,13 @@ import { bindActionCreators } from "redux";
 import { getCurrencyRates } from "../actions/LandingPageActions";
 
 import Header from "../components/Generic/Header";
+import LandingPageContentContainer from "../components/LandingPage/LandingPageContentContainer";
 
 class LandingPage extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			selectedHotel: null
-		};
+		this.state = {};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -34,7 +33,8 @@ class LandingPage extends Component {
 		console.log(this.state);
 		return (
 			<div className = "landing_page_container">
-				<Header headerStyle = {{ textAlign: "center" }} headerText = { "Welcome to Landing Page." } />
+				<Header headerClassName = { "landing_page_header" } headerText = { "Welcome to Currency Rates App!" } />
+				<LandingPageContentContainer />
 			</div>
 		);
 	}
