@@ -10,8 +10,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers/";
 import initialState from "./CurrencyRatesState";
 
-// import HotelsList from "./containers/HotelsList.jsx";
-// import HotelPage from "./containers/HotelPage.jsx";
+import NavigationMenu from "./containers/NavigationMenu.jsx";
 import LandingPage from "./containers/LandingPage.jsx";
 import AboutPage from "./containers/AboutPage.jsx";
 
@@ -27,6 +26,7 @@ export default class CurrencyRatesApp extends Component {
 		return(
 			<Router>
 				<div>
+					<NavigationMenu />
 					<Route exact path = "/" component = { LandingPage } />
 					<Route exact path = "/results" component = { LandingPage } />
 					<Route exact path = "/about" component = { AboutPage } />
