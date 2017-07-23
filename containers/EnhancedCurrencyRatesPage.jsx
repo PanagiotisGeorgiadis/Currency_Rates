@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import { getCurrencyRates } from "../actions/LandingPageActions";
+
 import Header from "../components/Generic/Header";
 
 class EnhancedCurrencyRatesPage extends Component {
@@ -20,6 +22,7 @@ class EnhancedCurrencyRatesPage extends Component {
 
 	componentWillMount() {
 
+		this.props.getCurrencyRates();
 		this.setState({
 			...this.props
 		});
@@ -35,7 +38,7 @@ class EnhancedCurrencyRatesPage extends Component {
 	}
 }
 
-const mapStateToProps = ({}) => {
+const mapStateToProps = ({CurrencyRatesReducer}) => {
 
 	return {
 	}
@@ -44,6 +47,7 @@ const mapStateToProps = ({}) => {
 const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
+		getCurrencyRates
 	}, dispatch);
 }
 

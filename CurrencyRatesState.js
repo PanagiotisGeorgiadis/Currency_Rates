@@ -7,6 +7,9 @@ const defaultCurrencyRatesAppState = {
 const initialState = {
 	LandingPageReducer: {
 		...defaultCurrencyRatesAppState
+	},
+	CurrencyRatesReducer: {
+		...defaultCurrencyRatesAppState
 	}
 };
 
