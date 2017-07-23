@@ -8,6 +8,7 @@ export default (state = null, action) => {
 
 	var updatedState = Object.assign({}, state);
 
+
 	switch(action.type) {
 
 		case DRAW_LOADING_IMAGE:
@@ -29,15 +30,27 @@ export default (state = null, action) => {
 			break;
 
 		case GET_CURRENCY_RATES_SUCCESS:
-			console.log(action.payload);
-			updatedState.errorMessage = null;
-			updatedState.showLoadingImage = false;
-			updatedState.currencyRates = action.payload.response;
+
+			if(action.payload.response.error) {
+
+				updatedState.errorMessage = action.payload.response.error;
+
+			} else {
+
+				updatedState.showLoadingImage = false;
+				updatedState.currencyRates = action.payload.response;
+
+				updatedState.currencyNames = [];
+				for(var props in updatedState.currencyRates.rates) {
+					updatedState.currencyNames.push(props);
+				}
+				updatedState.selectedCurrency = updatedState.currencyNames[0];
+			}
 			break;
 
 		case GET_CURRENCY_RATES_FAILURE:
 
-			updatedState.errorMessage = action.payload;
+			updatedState.errorMessage = action.payload.error;
 			updatedState.showLoadingImage = false;
 			break;
 

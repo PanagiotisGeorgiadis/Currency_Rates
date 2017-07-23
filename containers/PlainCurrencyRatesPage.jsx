@@ -5,14 +5,20 @@ import { bindActionCreators } from "redux";
 import { getCurrencyRates } from "../actions/CurrencyRatesActions";
 
 import Header from "../components/Generic/Header";
-import DateInput from "../components/CurrencyRates/DateInput";
-import CurrencyInput from "../components/CurrencyRates/CurrencyInput";
+import LoadingImage from "../components/Generic/LoadingImage";
+import ErrorMessage from "../components/Generic/ErrorMessage";
+
+import CurrencyInputContainer from "../components/CurrencyRates/CurrencyInputContainer";
 
 class PlainCurrencyRatesPage extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			currencyNames: [],
+			selectedDate: "",
+			selectedCurrency: "",
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -25,34 +31,65 @@ class PlainCurrencyRatesPage extends Component {
 	componentWillMount() {
 
 		this.props.getCurrencyRates();
+
 		this.setState({
-			...this.props
+			...this.props,
+			selectedDate: this.getDefaultDate()
 		});
+	}
+
+	getDefaultDate() {
+
+		let today = new Date();
+		let date = today.getDate();
+		let month = ( today.getMonth() + 1 < 10 ) ? "0" + ( today.getMonth() + 1 ) : today.getMonth() + 1;
+		let year = today.getFullYear();
+		return year + "-" + month + "-" + date;
 	}
 
 	handleDateChange(event) {
 
-		console.log(event.target.value);
+		this.setState({
+			selectedDate: event.target.value
+		});
+	}
+
+	handleCurrencyChange(event) {
+
+		this.setState({
+			selectedCurrency: event.target.value
+		});
+	}
+
+	handleSubmit(event) {
+
+		// console.log(event.target.value);
+		console.log(this.state.selectedCurrency);
+		console.log(this.state.selectedDate);
 	}
 
 	render() {
-		// console.log(this.state.currencyRates);
-		let currencies = [];
-		for(var props in this.state.currencyRates.rates) {
-			currencies.push(props);
+
+		if(this.state.showErrorMessage) {
+			return (
+				<ErrorMessage errorMessageText = { this.state.errorMessage } />
+			);
+		} else if(this.state.showLoadingImage) {
+			return (
+				<LoadingImage />
+			);
+		} else {
+			return (
+				<div className = "currency_content_container">
+					<Header headerClassName = { "page_header" } headerText = { "Welcome to the plain currency rates page!" } />
+					<CurrencyInputContainer onCurrencyChangeHandler = { this.handleCurrencyChange.bind(this) } currencyNames = { this.state.currencyNames } onDateChangeHandler = { this.handleDateChange.bind(this) } onSubmitHandler = { this.handleSubmit.bind(this) } />
+				</div>
+			);
 		}
-		return (
-			<div className = "about_page_container">
-				<Header headerStyle = {{ textAlign: "center" }} headerText = { "Welcome to the plain currency rates page!" } />
-				<DateInput minDate = { "1999-01-01" } maxDate = { "2017-07-23" } defaultDateValue = { "2017-07-23" } onChangeHandler = { this.handleDateChange.bind(this) } />
-				<CurrencyInput currencies = { currencies } />
-			</div>
-		);
 	}
 }
 
 const mapStateToProps = ({CurrencyRatesReducer}) => {
-
 	return {
 		...CurrencyRatesReducer
 	}
