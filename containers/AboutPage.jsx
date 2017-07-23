@@ -29,7 +29,7 @@ class AboutPage extends Component {
 
 		return (
 			<div className = "about_page_container">
-				<Header headerStyle = {{ textAlign: "center" }} headerText = { "Welcome to the About Page!" } />
+				<Header headerClassName = { "page_header" } headerText = { "Welcome to the About Page!" } />
 			</div>
 		);
 	}
