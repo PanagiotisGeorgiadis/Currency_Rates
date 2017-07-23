@@ -31,20 +31,9 @@ class PlainCurrencyRatesPage extends Component {
 	componentWillMount() {
 
 		this.props.getCurrencyRates();
-
 		this.setState({
 			...this.props,
-			selectedDate: this.getDefaultDate()
 		});
-	}
-
-	getDefaultDate() {
-
-		let today = new Date();
-		let date = today.getDate();
-		let month = ( today.getMonth() + 1 < 10 ) ? "0" + ( today.getMonth() + 1 ) : today.getMonth() + 1;
-		let year = today.getFullYear();
-		return year + "-" + month + "-" + date;
 	}
 
 	handleDateChange(event) {
