@@ -6,10 +6,27 @@ export const HIDE_LOADING_IMAGE = "HIDE/LOADING_IMAGE";
 export const DRAW_ERROR_MESSAGE = "DRAW/ERROR_MESSAGE";
 export const HIDE_ERROR_MESSAGE = "HIDE/ERROR_MESSAGE";
 
+export const GET_CURRENCY_NAMES_SUCCESS = "GET/CURRENCY_NAMES/SUCCESS";
+export const GET_CURRENCY_NAMES_FAILURE = "GET/CURRENCY_NAMES/FAILURE";
+
 export const GET_CURRENCY_RATES_SUCCESS = "GET/CURRENCY_RATES/SUCCESS";
 export const GET_CURRENCY_RATES_FAILURE = "GET/CURRENCY_RATES/FAILURE";
 
-export const DRAW_INITIAL_CURRENCY_RATES = "DRAW/CURRENCY_RATES/INITIAL";
+export const getCurrencyNames = (url = "http://api.fixer.io/latest") => {
+
+	return (dispatch) => {
+		APIManager.fetchDataBlocking(url)
+			.then((response) => {
+				dispatch(fetchOperationSuccess(response, GET_CURRENCY_NAMES_SUCCESS));
+				dispatch(hideLoadingImage());
+			})
+			.catch((response) => {
+				dispatch(fetchOperationFailed(response, GET_CURRENCY_NAMES_FAILURE))
+				dispatch(hideLoadingImage());
+				dispatch(showErrorMessage());
+			});
+	};
+};
 
 export const getCurrencyRates = (url = "http://api.fixer.io/latest") => {
 
