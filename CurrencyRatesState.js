@@ -1,13 +1,14 @@
 const defaultCurrencyRatesAppState = {
 	showLoadingImage: true,
+	showErrorMessage: false,
 	errorMessage: null,
 	currencyRates: {},
+	currencyNames: [],
+	selectedDate: "",
+	selectedCurrency: ""
 }
 
 const initialState = {
-	LandingPageReducer: {
-		...defaultCurrencyRatesAppState
-	},
 	CurrencyRatesReducer: {
 		...defaultCurrencyRatesAppState
 	}

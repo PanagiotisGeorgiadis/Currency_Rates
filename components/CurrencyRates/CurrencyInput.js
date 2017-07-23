@@ -1,14 +1,17 @@
 import React from "react";
 
-const CurrencyInput = ({currencies}) => {
+const CurrencyInput = ({currencies = [], onChangeHandler = () => {}}) => {
 
 	let options = currencies.map((currency, iterator) => {
 		return <option key = { iterator }> { currency } </option>;
 	});
 	return (
-		<select>
-			{ options }
-		</select>
+		<div className = "input_container">
+			<label> Select Currency </label>
+			<select className = "currency_select_input" onChange = { onChangeHandler }>
+				{ options }
+			</select>
+		</div>
 	);
 }
 
