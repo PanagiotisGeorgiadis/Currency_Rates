@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getCurrencyNames, getCurrencyRates } from "../actions/CurrencyRatesActions";
+import { getCurrencyNames, getCurrencyRates, drawLoadingImage,
+		updateSelectedCurrency, updateSelectedDate,
+		updateSecondaryCurrency } from "../actions/CurrencyRatesActions";
 
 import Header from "../components/Generic/Header";
 import LoadingImage from "../components/Generic/LoadingImage";
@@ -54,9 +56,20 @@ class PlainCurrencyRatesPage extends Component {
 	handleSubmit(event) {
 
 		if(this.state.selectedDate && this.state.selectedCurrency) {
+
 			var url = "http://api.fixer.io/" + this.state.selectedDate + "?base=" + this.state.selectedCurrency;
+			this.state.drawLoadingImage();
+			this.state.updateSelectedCurrency(this.state.selectedCurrency);
+			this.state.updateSelectedDate(this.state.selectedDate);
+
 			this.state.getCurrencyRates(url);
 		}
+	}
+
+	handleCurrencyClick(event) {
+
+		if(this.state.selectedDate && this.state.selectedCurrency)
+			this.state.updateSecondaryCurrency(event.target.innerHTML);
 	}
 
 	render() {
@@ -73,7 +86,7 @@ class PlainCurrencyRatesPage extends Component {
 			pageContents.push(<CurrencyInputContainer key = { 0 } onCurrencyChangeHandler = { this.handleCurrencyChange.bind(this) } currencyNames = { this.state.currencyNames } onDateChangeHandler = { this.handleDateChange.bind(this) } onSubmitHandler = { this.handleSubmit.bind(this) } />);
 
 			if(this.state.drawCurrencyTable)
-				pageContents.push(<CurrencyTable key = { 1 } currencyRates = { this.state.currencyRates.rates } />);
+				pageContents.push(<CurrencyTable key = { 1 } currencyRates = { this.state.currencyRates.rates } currencyNamesRowClickHandler = { this.handleCurrencyClick.bind(this) } />);
 		}
 
 		return (
@@ -95,7 +108,11 @@ const mapDispatchToProps = (dispatch) => {
 
 	return bindActionCreators({
 		getCurrencyNames,
-		getCurrencyRates
+		getCurrencyRates,
+		updateSelectedCurrency,
+		updateSelectedDate,
+		updateSecondaryCurrency,
+		drawLoadingImage
 	}, dispatch);
 }
 

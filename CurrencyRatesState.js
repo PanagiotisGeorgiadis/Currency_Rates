@@ -17,6 +17,10 @@ const defaultCurrencyRatesAppState = {
 const initialState = {
 	CurrencyRatesReducer: {
 		...defaultCurrencyRatesAppState
+	},
+	CurrencyHistoryReducer: {
+		yearlyRatesArray: [],
+		yearlyRatesArrayFetchFinished: false,
 	}
 };
 

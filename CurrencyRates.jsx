@@ -17,6 +17,8 @@ import AboutPage from "./containers/AboutPage.jsx";
 import PlainCurrencyRatesPage from "./containers/PlainCurrencyRatesPage.jsx";
 import EnhancedCurrencyRatesPage from "./containers/EnhancedCurrencyRatesPage.jsx";
 
+import CurrencyHistoryPage from "./containers/CurrencyHistoryPage.jsx";
+
 export default class CurrencyRatesApp extends Component {
 
 	constructor(props) {
@@ -34,6 +36,7 @@ export default class CurrencyRatesApp extends Component {
 					<Route exact path = "/plain_rates" component = { PlainCurrencyRatesPage } />
 					<Route exact path = "/enhanced_rates" component = { LandingPage } />
 					<Route exact path = "/about" component = { AboutPage } />
+					<Route exact path = "/currency/:name" component = { CurrencyHistoryPage } />
 				</div>
 			</Router>
 		)

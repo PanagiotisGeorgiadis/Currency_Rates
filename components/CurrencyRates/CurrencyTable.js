@@ -5,7 +5,7 @@ import CurrencyNamesRow from "./CurrencyNamesRow";
 
 const currenciesPerRow = 11;
 
-const renderCurrencyTableRows = (currencyRates) => {
+const renderCurrencyTableRows = (currencyRates, currencyNamesRowClickHandler) => {
 
 	let rowsIterator = 0;
 	let currenciesIterator = 0;
@@ -23,7 +23,7 @@ const renderCurrencyTableRows = (currencyRates) => {
 		if(currenciesIterator > 0 && currenciesIterator % currenciesPerRow === 0) {
 
 			currencyTableRows.push(<CurrencyRatesRow key = { rowsIterator++ } currencyRatesArray = { currencyRatesArray } />);
-			currencyTableRows.push(<CurrencyNamesRow key = { rowsIterator++ } currencyNamesArray = { currencyNamesArray } />);
+			currencyTableRows.push(<CurrencyNamesRow key = { rowsIterator++ } currencyNamesArray = { currencyNamesArray } currencyNamesRowClickHandler = { currencyNamesRowClickHandler } />);
 			currencyRatesArray = [];
 			currencyNamesArray = [];
 		}
@@ -33,14 +33,14 @@ const renderCurrencyTableRows = (currencyRates) => {
 		currencyTableRows.push(<CurrencyRatesRow key = { rowsIterator++ } currencyRatesArray = { currencyRatesArray } />);
 
 	if(currencyNamesArray.length)
-		currencyTableRows.push(<CurrencyNamesRow key = { rowsIterator++ } currencyNamesArray = { currencyNamesArray } />);
+		currencyTableRows.push(<CurrencyNamesRow key = { rowsIterator++ } currencyNamesArray = { currencyNamesArray } currencyNamesRowClickHandler = { currencyNamesRowClickHandler } />);
 
 	return currencyTableRows;
 }
 
-const CurrencyTable = ({currencyRates}) => {
+const CurrencyTable = ({currencyRates, currencyNamesRowClickHandler}) => {
 
-	let currencyTableRows = renderCurrencyTableRows(currencyRates);
+	let currencyTableRows = renderCurrencyTableRows(currencyRates, currencyNamesRowClickHandler);
 	
 	return (
 		<div className = "currency_table_container">
@@ -54,22 +54,3 @@ const CurrencyTable = ({currencyRates}) => {
 }
 
 export default CurrencyTable;
-
-/*
-<tr className = "currency_rates_row">
-</tr>
-<tr className = "currency_names_row">
-</tr>
-<tr className = "currency_rates_row">
-</tr>
-<tr className = "currency_names_row">
-</tr>
-<tr className = "currency_rates_row">
-</tr>
-<tr className = "currency_names_row">
-</tr>
-<tr className = "currency_rates_row">
-</tr>
-<tr className = "currency_names_row">
-</tr>
-*/

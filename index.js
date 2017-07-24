@@ -16,6 +16,7 @@ currencyRatesApp.get("/", (request, response) => projectHelpers.sendIndexPage(re
 currencyRatesApp.get("/plain_rates", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
 currencyRatesApp.get("/enhanced_rates", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
 currencyRatesApp.get("/about", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
+currencyRatesApp.get("/currency/:currencyName", (request, response) => projectHelpers.sendIndexPage(request, response, pagesFolderPath));
 
 currencyRatesApp.get("/test", function(request, response) {
 

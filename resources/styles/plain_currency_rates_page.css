@@ -1,14 +1,3 @@
-.currency_content_container {
-
-	height: calc(100vh - 5em);
-
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex-wrap: wrap;
-}
-
 /***********************************************/
 /********* Currency Inputs Section *************/
 /***********************************************/
@@ -89,7 +78,6 @@
 
 .currency_table tr td {
 	padding: 5px 15px;
-	cursor: pointer;
 }
 
 .currency_table tr td:nth-child(odd) {
@@ -97,8 +85,18 @@
 }
 
 .currency_table tr td:nth-child(even) {
-
 	background-color: #a6a6a6;
+}
+
+.currency_names_cell {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.currency_names_cell a {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 td {

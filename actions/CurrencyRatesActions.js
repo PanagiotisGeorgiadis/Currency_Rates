@@ -12,6 +12,10 @@ export const GET_CURRENCY_NAMES_FAILURE = "GET/CURRENCY_NAMES/FAILURE";
 export const GET_CURRENCY_RATES_SUCCESS = "GET/CURRENCY_RATES/SUCCESS";
 export const GET_CURRENCY_RATES_FAILURE = "GET/CURRENCY_RATES/FAILURE";
 
+export const UPDATE_SELECTED_DATE = "UPDATE/SELECTED/DATE";
+export const UPDATE_SELECTED_CURRENCY = "UPDATE/SELECTED/CURRENCY";
+export const UPDATE_SECONDARY_CURRENCY = "UPDATE/SECONDARY/CURRENCY";
+
 export const getCurrencyNames = (url = "http://api.fixer.io/latest") => {
 
 	return (dispatch) => {
@@ -66,10 +70,24 @@ export const hideErrorMessage = () => ({
 	payload: {}
 });
 
-export const drawInitialCurrencyRates = () => ({
-	type: DRAW_INITIAL_CURRENCY_RATES,
+export const updateSelectedCurrency = (selectedCurrency) => ({
+	type: UPDATE_SELECTED_CURRENCY,
 	payload: {
-		numOfHotels
+		selectedCurrency
+	}
+});
+
+export const updateSelectedDate = (selectedDate) => ({
+	type: UPDATE_SELECTED_DATE,
+	payload: {
+		selectedDate
+	}
+});
+
+export const updateSecondaryCurrency = (secondaryCurrency) => ({
+	type: UPDATE_SECONDARY_CURRENCY,
+	payload: {
+		secondaryCurrency
 	}
 });
 

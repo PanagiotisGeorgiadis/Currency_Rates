@@ -5,3 +5,14 @@
 	margin: 1em 0;
 	text-align: center;
 }
+
+.currency_content_container {
+
+	height: calc(100vh - 5em);
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+}

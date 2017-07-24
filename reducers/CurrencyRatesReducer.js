@@ -2,6 +2,7 @@ import { DRAW_LOADING_IMAGE, HIDE_LOADING_IMAGE,
 		 DRAW_ERROR_MESSAGE, HIDE_ERROR_MESSAGE,
 		 GET_CURRENCY_NAMES_SUCCESS, GET_CURRENCY_NAMES_FAILURE,
 		 GET_CURRENCY_RATES_SUCCESS, GET_CURRENCY_RATES_FAILURE,
+		 UPDATE_SELECTED_DATE, UPDATE_SELECTED_CURRENCY, UPDATE_SECONDARY_CURRENCY,
 		} from "../actions/CurrencyRatesActions";
 
 export default (state = null, action) => {
@@ -70,6 +71,18 @@ export default (state = null, action) => {
 
 			updatedState.errorMessage = action.payload.error;
 			updatedState.showLoadingImage = false;
+			break;
+
+		case UPDATE_SELECTED_CURRENCY:
+			updatedState.selectedCurrency = action.payload.selectedCurrency;
+			break;
+
+		case UPDATE_SELECTED_DATE:
+			updatedState.selectedDate = action.payload.selectedDate;
+			break;
+
+		case UPDATE_SECONDARY_CURRENCY:
+			updatedState.secondaryCurrency = action.payload.secondaryCurrency;
 			break;
 
 	}
