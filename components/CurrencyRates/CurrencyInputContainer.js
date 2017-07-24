@@ -4,12 +4,12 @@ import DateInput from "./DateInput";
 import SubmitButton from "./SubmitButton";
 import CurrencyInput from "./CurrencyInput";
 
-const CurrencyInputContainer = ({currencyNames, onDateChangeHandler, onCurrencyChangeHandler, onSubmitHandler}) => {
+const CurrencyInputContainer = ({currencyNames, onDateChangeHandler, onCurrencyChangeHandler, onSubmitHandler, defaultCurrency, defaultDate}) => {
 
 	return (
-		<div className = "currency_input_container">			
-			<CurrencyInput currencies = { currencyNames } onChangeHandler = { onCurrencyChangeHandler } />
-			<DateInput onChangeHandler = { onDateChangeHandler } />
+		<div className = "currency_input_container">
+			<CurrencyInput currencyNames = { currencyNames } onChangeHandler = { onCurrencyChangeHandler } defaultCurrencyValue = { defaultCurrency } />
+			<DateInput onChangeHandler = { onDateChangeHandler } defaultDateValue = { defaultDate } />
 			<SubmitButton onClickHandler = { onSubmitHandler } />
 		</div>
 	);

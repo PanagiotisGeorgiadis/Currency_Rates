@@ -20,7 +20,7 @@ class PlainCurrencyRatesPage extends Component {
 		this.state = {
 			currencyNames: [],
 			selectedDate: "",
-			selectedCurrency: "",
+			selectedCurrency: "EUR",
 		};
 	}
 
@@ -83,7 +83,7 @@ class PlainCurrencyRatesPage extends Component {
 			pageContents.push(<LoadingImage key = { 0 } />);
 		} else {
 
-			pageContents.push(<CurrencyInputContainer key = { 0 } onCurrencyChangeHandler = { this.handleCurrencyChange.bind(this) } currencyNames = { this.state.currencyNames } onDateChangeHandler = { this.handleDateChange.bind(this) } onSubmitHandler = { this.handleSubmit.bind(this) } />);
+			pageContents.push(<CurrencyInputContainer key = { 0 } onCurrencyChangeHandler = { this.handleCurrencyChange.bind(this) } currencyNames = { this.state.currencyNames } onDateChangeHandler = { this.handleDateChange.bind(this) } onSubmitHandler = { this.handleSubmit.bind(this) } defaultCurrency = { this.state.selectedCurrency } defaultDate = { this.state.selectedDate } />);
 
 			if(this.state.drawCurrencyTable)
 				pageContents.push(<CurrencyTable key = { 1 } currencyRates = { this.state.currencyRates.rates } currencyNamesRowClickHandler = { this.handleCurrencyClick.bind(this) } />);
