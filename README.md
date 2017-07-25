@@ -16,3 +16,5 @@ To run the project
 Once all that is finished go to your browser and type 127.0.0.1:3000 or localhost:3000.
 
 Thanks for reading.
+
+Note: This project is a total hack that was created in less than 20 hours of work so use it while being extremly cautious!
