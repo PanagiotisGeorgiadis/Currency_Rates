@@ -66,16 +66,17 @@ class CurrencyHistoryPage extends Component {
 			pageContents.push(<ErrorMessage key = { 0 } errorMessageText = { this.state.errorMessage } />);
 		} else if(this.state.showLoadingImage) {
 
-			pageContents.push(<LoadingImage key = { 0 } />);
+			pageContents.push(<p key = { 0 }> { "Tip: Grab a coffee until the loading finishes" }</p>);
+			pageContents.push(<LoadingImage key = { 1 } />);
 		} else {
 
-			pageContents.push(<svg key = { 0 } className = "line_chart" width = "980" height = "500"></svg>);
+			pageContents.push(<p key = { 0 }>{ "Yearly Rates Chart for the price of 1 " + this.state.selectedCurrency + " compared to " + this.state.secondaryCurrency}</p>);
+			pageContents.push(<svg key = { 1 } className = "line_chart" width = "980" height = "500"></svg>);
 		}
 
 		return (
 			<div className = "currency_content_container">
 				<Header headerClassName = { "page_header" } headerText = { "Welcome to the currency history page!" } />
-				<p> { "Tip: Grab a coffee until the loading finishes" }</p>
 				{ pageContents }
 			</div>
 		);
