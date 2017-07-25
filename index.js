@@ -7,7 +7,6 @@ var Helpers = require("./helpers");
 currencyRatesApp.use("/styles", express.static(__dirname + "/resources/styles/"));
 currencyRatesApp.use("/images", express.static(__dirname + "/resources/images/"));
 currencyRatesApp.use("/public", express.static(__dirname));
-// currencyRatesApp.use("/utils", express.static(__dirname + "/utils/"));
 
 var projectHelpers = new Helpers();
 var pagesFolderPath = __dirname + "/pages/"

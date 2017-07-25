@@ -1,0 +1,20 @@
+.axis--x path {
+	display: none;
+}
+
+.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 1.5px;
+}
+
+.bar {
+
+	fill: dodgerblue;
+}
+
+text {
+	fill: white;
+	/*font-size: 18px;*/
+	font-weight: bold;
+}

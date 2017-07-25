@@ -1,6 +1,6 @@
 {
   "name": "Currency_Rates",
-  "version": "0.4.0",
+  "version": "0.8.0",
   "description": "This is a simple currency rates project.",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "license": "ISC",
   "homepage": "https://github.com/PanagiotisGeorgiadis/Currency_Rates/",
   "dependencies": {
+    "d3": "^4.10.0",
     "express": "^4.15.3",
     "nodemon": "^1.11.0",
     "react": "^15.6.1",

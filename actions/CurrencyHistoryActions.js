@@ -12,6 +12,7 @@ let LastYearDatesArray = [];
 
 export const GET_YEARLY_RATES_SUCCESS = "GET/YEARLY/CURRENCY_RATES/SUCCESS";
 export const GET_YEARLY_RATES_FAILURE = "GET/YEARLY/CURRENCY_RATES/FAILURE";
+export const FORMAT_YEARLY_ARRAY = "FORMAT/YEARLY/CURRENCY_RATES";
 
 
 export const getYearlyRates = (url = "http://api.fixer.io/latest", timeoutValue = 0) => {
@@ -53,10 +54,15 @@ export const getLastYearCurrencyRange = (baseCurrency = "EUR", symbolsArray = []
 		for(var i = 0; i < LastYearDatesArray.length; i++) {
 
 			var requestURL = baseUrl + LastYearDatesArray[i] + "?base=" + baseCurrency + "&symbols=" + symbolsArray.toString();
-			dispatch(getYearlyRates(requestURL, parseInt(i * 100)));
+			dispatch(getYearlyRates(requestURL, parseInt(i * 150)));
 		}	
 	}
 };
+
+export const formatYearlyArray = () => ({
+	type: FORMAT_YEARLY_ARRAY,
+	payload: {}
+});
 
 export const fetchOperationSuccess = (response, actionType) => ({
 	type: actionType,

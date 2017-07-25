@@ -34,7 +34,7 @@ export default class CurrencyRatesApp extends Component {
 					<NavigationMenu />
 					<Route exact path = "/" component = { LandingPage } />
 					<Route exact path = "/plain_rates" component = { PlainCurrencyRatesPage } />
-					<Route exact path = "/enhanced_rates" component = { LandingPage } />
+					<Route exact path = "/enhanced_rates" component = { EnhancedCurrencyRatesPage } />
 					<Route exact path = "/about" component = { AboutPage } />
 					<Route exact path = "/currency/:name" component = { CurrencyHistoryPage } />
 				</div>

@@ -33,7 +33,9 @@ class PlainCurrencyRatesPage extends Component {
 
 	componentWillMount() {
 
-		this.props.getCurrencyNames();
+		if(!this.props.currencyNames.length)
+			this.props.getCurrencyNames();
+
 		this.setState({
 			...this.props,
 		});

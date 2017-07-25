@@ -21,6 +21,7 @@ const initialState = {
 	CurrencyHistoryReducer: {
 		yearlyRatesArray: [],
 		yearlyRatesArrayFetchFinished: false,
+		lineChartData: [],
 	}
 };
 

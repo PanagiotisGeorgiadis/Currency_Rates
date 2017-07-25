@@ -7,21 +7,31 @@ import LoadingImage from "../components/Generic/LoadingImage";
 import ErrorMessage from "../components/Generic/ErrorMessage";
 
 import { drawLoadingImage, hideLoadingImage } from "../actions/CurrencyRatesActions";
-import { getLastYearCurrencyRange } from "../actions/CurrencyHistoryActions";
+import { getLastYearCurrencyRange, formatYearlyArray } from "../actions/CurrencyHistoryActions";
+
+import ChartUtils from "../utils/ChartUtils";
 
 class CurrencyHistoryPage extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			yearlyRatesArray: []
+			yearlyRatesArray: [],
 		};
+	}
+
+	componentDidUpdate() {
+
+		if(this.state.yearlyRatesArrayFetchFinished && this.state.lineChartData.length)
+			ChartUtils.lineChart(this.state.lineChartData, this.state.secondaryCurrency);
 	}
 
 	componentWillReceiveProps(nextProps) {
 
-		if(nextProps.yearlyRatesArrayFetchFinished)
+		if(nextProps.yearlyRatesArrayFetchFinished && !nextProps.lineChartData.length) {
+			this.state.formatYearlyArray();
 			this.state.hideLoadingImage();
+		}
 
 		this.setState({
 			...nextProps
@@ -59,12 +69,13 @@ class CurrencyHistoryPage extends Component {
 			pageContents.push(<LoadingImage key = { 0 } />);
 		} else {
 
-			pageContents.push(<h1 key = { 0 } >{ "DRAW THE FUCKING GRAPH" }</h1>);
+			pageContents.push(<svg key = { 0 } className = "line_chart" width = "980" height = "500"></svg>);
 		}
 
 		return (
 			<div className = "currency_content_container">
 				<Header headerClassName = { "page_header" } headerText = { "Welcome to the currency history page!" } />
+				<p> { "Tip: Grab a coffee until the loading finishes" }</p>
 				{ pageContents }
 			</div>
 		);
@@ -76,7 +87,8 @@ const mapStateToProps = ({CurrencyRatesReducer, CurrencyHistoryReducer}) => {
 	return {
 		...CurrencyRatesReducer,
 		yearlyRatesArray: CurrencyHistoryReducer.yearlyRatesArray,
-		drawLineChart: CurrencyHistoryReducer.drawLineChart,
+		yearlyRatesArrayFetchFinished: CurrencyHistoryReducer.yearlyRatesArrayFetchFinished,
+		lineChartData: CurrencyHistoryReducer.lineChartData,
 	}
 };
 
@@ -85,7 +97,8 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({
 		getLastYearCurrencyRange,
 		drawLoadingImage,
-		hideLoadingImage
+		hideLoadingImage,
+		formatYearlyArray
 	}, dispatch);
 }
 
